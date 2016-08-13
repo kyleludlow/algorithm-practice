@@ -132,6 +132,7 @@ function findKthNode(list, k){
   return kthNode;
 }
 
+
 // console.log(findKthNode(sll, 1));
 
 
@@ -146,7 +147,7 @@ function reverseSingleList(sll) {
 
   //storing all the nodes in an array
   var nodes=[],
-    current = sll.head;
+      current = sll.head;
 
   // iterates over list and pushes nodes to nodes array
   while(current){

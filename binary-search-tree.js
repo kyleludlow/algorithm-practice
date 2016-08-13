@@ -143,32 +143,49 @@ data.forEach(block => {
 // 1. check whether an arbitrary tree is a binary search tree
 
 // stores last node checked
-var lastPrinted = null;
+// var lastPrinted = null;
+//
+// function checkBST(node) {
+//
+//   if (node === null) return true;
+//
+//   // check recursive left
+//   if (!checkBST(node.left)) return false;
+//
+//   // check current
+//   if (lastPrinted !== null && node.key <= lastPrinted) {
+//     return false;
+//   }
+//
+//   // assign current to lastPrinted
+//   lastPrinted = node.key;
+//
+//   // check recursive right
+//   if (!checkBST(node.right)) return false;
+//
+//   return true;
+// }
 
-function checkBST(node) {
 
-  //
-  if (node === null) return true;
+// or
 
-  // check recursive left
-  if (!checkBST(node.left)) return false;
+function isBST(root, lowerBound, upperBound) {
+  lowerBound = lowerBound || -Infinity;
+  upperBound = upperBound ||  Infinity;
 
-  // check current
-  if (lastPrinted != null && node.key <= lastPrinted) {
-    return false;
+  if (!root) return true;
+
+  if (root.value > upperBound || root.value < lowerBound) {
+      return false;
   }
 
-  // assign current to lastPrinted
-  lastPrinted = node.key;
+  return isBST(root.left, lowerBound, root.value) &&
+         isBST(root.right, root.value, upperBound);
 
-  // check recursive right
-  if (!checkBST(node.right)) return false;
-
-  return true;
 }
 
 
-console.log(checkBST(Tree));
+console.log(isBST(Tree));
 
 // 2. find the height of a binary search tree
 
@@ -194,7 +211,7 @@ function findHeight(node) {
   }
 }
 
-console.log(findHeight(Tree));
+console.log('height    ', findHeight(Tree));
 
 // 3. find the third largest value in a binary search tree
 
