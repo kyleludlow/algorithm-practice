@@ -93,3 +93,43 @@ function getProductsOfAllIntsExceptAtIndex(intArray) {
 }
 var productArray = [5 , 2, 3, 4];
 console.log(getProductsOfAllIntsExceptAtIndex(productArray));
+
+
+
+// 4. Define a function that takes an array of strings, and returns
+//  the most commonly occurring string that array
+
+
+function mostFrequentString(arr) {
+
+  if (arr.length === 0) return null;
+
+  var stringMap = {};
+  var mostFrequent = arr[0];
+  var maxCount = 1;
+
+  for (var i = 0; i < arr.length; i++) {
+
+    var currentString = arr[i];
+
+    if (!stringMap[currentString]) {
+
+      stringMap[currentString] = 1;
+    } else {
+
+      stringMap[currentString]++;
+
+      if (stringMap[currentString] > maxCount) {
+
+        mostFrequent = currentString;
+        maxCount = stringMap[currentString];
+    }
+  }
+  return mostFrequent;
+}
+
+
+var stringsArray = [ 'bob', 'dylan', 'bob', 'allan', 'rickman','allan','allan','allan', 'chazzy'];
+
+
+console.log(mostFrequentString(stringsArray));
