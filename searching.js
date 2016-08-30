@@ -68,10 +68,39 @@ function findMaxProfit(stockArray) {
 
 var stockPrices = [128, 97, 121, 123, 98, 97, 105];
 
-console.log(findMaxProfit(stockPrices));
+// console.log(findMaxProfit(stockPrices));
 
 // 2. Imagine that you wanted to find what the highest floor of a 100
 // story building you could drop an egg was, without the egg breaking.
 // But you only have two eggs. Write an algorithm to work out which
 // floors you should drop the eggs from to find this out in the most
 // efficient way.
+
+
+function findHighestFloor(floor, n = 14, counter = 1, previous = 1, guess = 15) {
+  // console.log(counter);
+  // console.log('N', n);
+  if (n === floor) {
+    return counter;
+  }
+  else if (n > floor) {
+    console.log('PREVIOUS', previous, 'N', n, 'COUNTER', counter);
+    for (var i = previous; i < n; i++) {
+      // console.log(counter);
+      if (i === floor) {
+        return counter;
+      } else {
+        counter++;
+      }
+    }
+  }
+  else {
+    previous = n;
+    guess--;
+    n = n + guess;
+    return findHighestFloor(floor, n, counter += 1, previous, guess );
+  }
+}
+
+
+console.log(findHighestFloor(91));
